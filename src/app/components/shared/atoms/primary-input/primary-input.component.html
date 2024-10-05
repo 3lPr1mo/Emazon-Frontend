@@ -1,0 +1,26 @@
+<div class="input-container">
+  <label
+    for="primary-input"
+    *ngIf="text"
+    class="input-label"
+  >
+    {{text}}
+  </label>
+  <div class="input-wrapper">
+    <input
+      id="primary-input"
+      [type]="type === 'password' && !showPassword ? 'password' : 'text'"
+      class="primary-input"
+      placeholder="Text"
+    />
+    <button
+      *ngIf="type === 'password'"
+      class="toggle-password"
+      (click)="toggleVisibility()"
+      type="button"
+    >
+      <span *ngIf="showPassword"><i class="fa-regular fa-eye"></i></span>
+      <span *ngIf="!showPassword"><i class="fa-regular fa-eye-slash"></i></span>
+    </button>
+  </div>
+</div>

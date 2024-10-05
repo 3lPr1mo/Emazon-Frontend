@@ -1,0 +1,58 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/typography";
+@import "../../../../../styles/corner-radius";
+
+* {
+  box-sizing: border-box;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 100%;
+}
+
+.input-label {
+  font-size: $body-size-M;
+}
+
+.primary-input {
+  padding: 12px;
+  width: 90%;
+  border: none;
+}
+
+.primary-input:focus {
+  outline: none;
+}
+
+.input-wrapper {
+  display: flex;
+  border: 1px solid $spacer-light;
+  border-radius: $radius-small;
+}
+
+.input-wrapper:focus-within {
+  border-color: $click-corporate;
+}
+
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $spacer-light;
+  outline: none;
+}
+
+@media (width <= 320px) {
+
+  .input-label {
+    font-size: $body-size-S;
+  }
+
+  .primary-input {
+    padding: 8px 12px;
+  }
+
+}
