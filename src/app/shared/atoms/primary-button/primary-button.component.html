@@ -1,0 +1,6 @@
+<button class="primary-button" [ngClass]="{'medium-button': size === 'medium', 'small-button': size === 'small'}">
+  <span *ngIf="showIcon">
+    <i class="fa-regular fa-floppy-disk"></i>
+  </span>
+  <span>{{text}}</span>
+</button>
