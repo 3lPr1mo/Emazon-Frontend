@@ -1,0 +1,38 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/typography";
+@import "../../../../styles/corner-radius";
+
+.secondary-button {
+  background-color: $white;
+  color: $primary-corporate;
+  border: solid $primary-corporate;
+  text-align: center;
+  font-size: $body-size-XS;
+  padding: 12px 52px;
+  border-radius: $radius-small;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+span {
+  font-family: 'Poppins', sans-serif;
+}
+
+.secondary-button:hover{
+  border-color: $hover-corporate;
+  color: $hover-corporate;
+}
+
+.secondary-button:active{
+  border-color: $click-corporate;
+  color: $click-corporate;
+}
+
+.medium-button {
+  padding: 8px 28px;
+}
+
+.small-button {
+  padding: 4px 12px;
+}
