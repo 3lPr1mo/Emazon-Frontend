@@ -1,13 +1,13 @@
-@import "../../../../styles/colors";
-@import "../../../../styles/typography";
-@import "../../../../styles/corner-radius";
+@import "../../../../../styles/colors";
+@import "../../../../../styles/typography";
+@import "../../../../../styles/corner-radius";
 
 .secondary-button {
   background-color: $white;
   color: $primary-corporate;
-  border: solid $primary-corporate;
+  border: 1px solid $primary-corporate;
   text-align: center;
-  font-size: $body-size-XS;
+  font-size: $body-size-S;
   padding: 12px 52px;
   border-radius: $radius-small;
   display: flex;
@@ -29,10 +29,16 @@ span {
   color: $click-corporate;
 }
 
-.medium-button {
-  padding: 8px 28px;
+@media (width <= 320px) {
+  .secondary-button {
+    padding: 4px 12px;
+    font-size: $body-size-XS;
+  }
 }
 
-.small-button {
-  padding: 4px 12px;
+@media (width > 320px) and (width <= 768px) {
+  .secondary-button {
+    padding: 8px 24px;
+    font-size: $body-size-XS;
+  }
 }
