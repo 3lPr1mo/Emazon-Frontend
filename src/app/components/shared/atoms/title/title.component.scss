@@ -1,0 +1,20 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/typography";
+
+h1 {
+  color: $black;
+  font-size: $desktop-h1;
+}
+
+
+@media (768px <= width < 1920px) {
+  h1 {
+    font-size: $tablet-h1;
+  }
+}
+
+@media (width < 768px) {
+  h1 {
+    font-size: $mobile-h1;
+  }
+}

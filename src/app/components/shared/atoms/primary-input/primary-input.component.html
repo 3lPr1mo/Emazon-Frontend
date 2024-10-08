@@ -11,7 +11,10 @@
       id="primary-input"
       [type]="type === 'password' && !showPassword ? 'password' : 'text'"
       class="primary-input"
-      placeholder="Text"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      (input)="onInput($event)"
+      [minlength]="1"
     />
     <button
       *ngIf="type === 'password'"
@@ -22,5 +25,8 @@
       <span *ngIf="showPassword"><i class="fa-regular fa-eye"></i></span>
       <span *ngIf="!showPassword"><i class="fa-regular fa-eye-slash"></i></span>
     </button>
+    <div *ngIf="control.invalid && control.touched" class="text-danger">
+      <span>{{getErrorMessage()}}</span>
+    </div>
   </div>
 </div>

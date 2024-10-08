@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="category-form">
+  <app-primary-input
+    text="Nombre"
+    placeholder="Ingrese el nombre..."
+    formControlName="name"
+    [maxLength]="maxLengthName"
+    (onValueChange)="onValueChange('name', $event)"
+    [isRequired]="true"
+  ></app-primary-input>
+  <app-text-area
+    text="Descripción"
+    placeholder="Ingrese una descripción..."
+    formControlName="description"
+    (onValueChange)="onValueChange('description', $event)"
+    [isRequired]="true"
+    [maxLength]="maxLengthDescription"
+  ></app-text-area>
+  <div class="category-form__button">
+    <primary-button
+      text="Guardar"
+      [showIcon]="true"
+      icon="fa-regular fa-floppy-disk"
+    >
+    </primary-button>
+  </div>
+</form>

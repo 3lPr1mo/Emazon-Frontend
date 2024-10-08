@@ -132,6 +132,7 @@ button:active {
       background: $primary-corporate;
 
       ul {
+        display: inline-block;
         li {
           display: block;
           text-align: left;

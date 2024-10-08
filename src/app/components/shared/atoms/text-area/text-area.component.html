@@ -1,0 +1,20 @@
+<div class="txtarea-container">
+  <label
+    for="primary-txtarea"
+    *ngIf="text"
+    class="txtarea-label"
+  >
+    {{text}}
+  </label>
+    <textarea
+      id="primary-txtarea"
+      class="primary-txtarea"
+      [maxLength]="maxLength"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      (input)="onInput($event)"
+      [minlength]="1"
+    >
+
+    </textarea>
+</div>

@@ -75,6 +75,9 @@
               "browserTarget": "emazon-front:build:development"
             }
           },
+          "options": {
+            "proxyConfig": "src/environments/proxy.config.json"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {

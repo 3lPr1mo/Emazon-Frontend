@@ -2,36 +2,30 @@ import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angul
 import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
-  selector: 'app-primary-input',
-  templateUrl: './primary-input.component.html',
-  styleUrls: ['./primary-input.component.scss'],
+  selector: 'app-text-area',
+  templateUrl: './text-area.component.html',
+  styleUrls: ['./text-area.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => PrimaryInputComponent),
+      useExisting: forwardRef(() => TextAreaComponent),
       multi: true
     }
   ]
 })
-export class PrimaryInputComponent implements OnInit {
+export class TextAreaComponent implements OnInit {
 
   private onChange = (value: string) => {};
   public control: FormControl = new FormControl();
   @Input() text: string = '';
-  @Input() type: 'text' | 'password' = 'text';
-  @Input() placeholder: string = '';
   @Input() maxLength: number = 0;
+  @Input() placeholder: string = '';
   @Input() isRequired: boolean = false;
   @Output() onValueChange = new EventEmitter<string>();
-  showPassword: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  toggleVisibility(): void {
-    this.showPassword = !this.showPassword;
   }
 
   getErrorMessage(): string {
