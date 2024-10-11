@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {FormControl, FormGroupDirective, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'app-primary-input',
@@ -16,7 +16,9 @@ import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
 export class PrimaryInputComponent implements OnInit {
 
   private onChange = (value: string) => {};
+  private onTouched = () => {};
   public control: FormControl = new FormControl();
+  @Input() controlName!: string;
   @Input() text: string = '';
   @Input() type: 'text' | 'password' = 'text';
   @Input() placeholder: string = '';
@@ -25,9 +27,11 @@ export class PrimaryInputComponent implements OnInit {
   @Output() onValueChange = new EventEmitter<string>();
   showPassword: boolean = true;
 
-  constructor() { }
+  constructor(private rootFormGroup: FormGroupDirective) { }
 
   ngOnInit(): void {
+    console.log(this.text)
+    this.control = this.rootFormGroup.control.get(this.controlName) as FormControl;
   }
 
   toggleVisibility(): void {
@@ -67,6 +71,10 @@ export class PrimaryInputComponent implements OnInit {
 
   registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
   }
 
 }

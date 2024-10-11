@@ -10,14 +10,14 @@ export class ModalComponent implements OnInit {
   @Input() title: string = '';
   @Output() closeEvn: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(public elementRef: ElementRef) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   close() {
-    this.elementRef.nativeElement.remove();
     this.closeEvn.emit();
+    //this.elementRef.nativeElement.remove();
   }
 
 }

@@ -14,7 +14,7 @@ import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
   ]
 })
 export class TextAreaComponent implements OnInit {
-
+  private _value: string = '';
   private onChange = (value: string) => {};
   public control: FormControl = new FormControl();
   @Input() text: string = '';
@@ -47,8 +47,11 @@ export class TextAreaComponent implements OnInit {
   }
 
   set value(value: string) {
-    this.control.setValue(value);
-    this.onValueChange.emit(value);
+    if(value !== this.value) {
+      this._value = value;
+      this.control.setValue(value, {emitEvent: false});
+      this.onValueChange.emit(value);
+    }
   }
 
   onInput(event: any): void {

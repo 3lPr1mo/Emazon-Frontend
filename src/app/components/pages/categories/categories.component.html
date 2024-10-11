@@ -10,7 +10,7 @@
   </span>
 </main>
 
-<app-modal *ngIf="modalIsVisible" title="Registrar una categoría" (closeEvn)="closeModal()">
+<app-modal class="modal" [ngClass]="{'isVisible': modalIsVisible}" title="Registrar una categoría" (closeEvn)="closeModal()">
   <app-category-form
     (categoryCreated)="openSuccess()"
     (categoryNotCreated)="openError($event)"

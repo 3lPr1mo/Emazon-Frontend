@@ -2,7 +2,7 @@
   <app-primary-input
     text="Nombre"
     placeholder="Ingrese el nombre..."
-    formControlName="name"
+    [controlName]="'name'"
     [maxLength]="maxLengthName"
     (onValueChange)="onValueChange('name', $event)"
     [isRequired]="true"
