@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroupDirective, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'app-primary-input',
@@ -13,10 +13,10 @@ import {FormControl, FormGroupDirective, NG_VALUE_ACCESSOR} from "@angular/forms
     }
   ]
 })
-export class PrimaryInputComponent implements OnInit {
+export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
 
   private onChange = (value: string) => {};
-  private onTouched = () => {};
+  public onTouched = () => {};
   public control: FormControl = new FormControl();
   @Input() controlName!: string;
   @Input() text: string = '';
@@ -30,7 +30,6 @@ export class PrimaryInputComponent implements OnInit {
   constructor(private rootFormGroup: FormGroupDirective) { }
 
   ngOnInit(): void {
-    console.log(this.text)
     this.control = this.rootFormGroup.control.get(this.controlName) as FormControl;
   }
 
@@ -73,8 +72,10 @@ export class PrimaryInputComponent implements OnInit {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
+  registerOnTouched(fn: any): void {
+  }
+
+  setDisabledState(isDisabled: boolean): void {
   }
 
 }

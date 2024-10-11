@@ -15,6 +15,7 @@
       [formControl]="control"
       (input)="onInput($event)"
       [minlength]="1"
+      (blur)="onTouched()"
     />
     <button
       *ngIf="type === 'password'"

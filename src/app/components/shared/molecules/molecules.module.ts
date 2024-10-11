@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -13,11 +13,12 @@ import { ModalMessageComponent } from './modal-message/modal-message.component';
 
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     NavBarComponent,
     LoginFormComponent,
     CategoryFormComponent,
-    ModalMessageComponent
+    ModalMessageComponent,
   ],
   exports: [
     NavBarComponent,

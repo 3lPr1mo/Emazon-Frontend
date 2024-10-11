@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'app-text-area',
@@ -13,10 +13,11 @@ import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
     }
   ]
 })
-export class TextAreaComponent implements OnInit {
+export class TextAreaComponent implements OnInit, ControlValueAccessor {
   private _value: string = '';
   private onChange = (value: string) => {};
   public control: FormControl = new FormControl();
+  public onTouched = () => {}
   @Input() text: string = '';
   @Input() maxLength: number = 0;
   @Input() placeholder: string = '';
@@ -64,6 +65,12 @@ export class TextAreaComponent implements OnInit {
 
   registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  setDisabledState(isDisabled: boolean): void {
   }
 
 }
