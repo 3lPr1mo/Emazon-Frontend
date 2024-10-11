@@ -1,0 +1,169 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/typography";
+@import "../../../../../styles/corner-radius";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: $primary-corporate;
+
+  .menu-icon {
+    display: none;
+  }
+
+  .sidebar {
+    top: 0;
+    height: 100%;
+    padding: 20px;
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 2.5rem;
+      li {
+        position: relative;
+        list-style-type: none;
+        padding: 10px 0;
+        color: $white;
+        font-size: $desktop-h2;
+        font-weight: $desktop-weight-h2;
+        cursor: pointer;
+
+        &:hover {
+          color: $spacer-light;
+        }
+      }
+    }
+  }
+
+  .company-logo {
+    color: $white;
+    font-size: $desktop-h1;
+    font-weight: $desktop-weight-h1;
+  }
+
+  .navbar-icons{
+    display: flex;
+    gap: 15px;
+  }
+
+}
+
+button {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: $desktop-h2;
+  color: $white;
+  cursor: pointer;
+}
+
+button:active {
+  color: $spacer-light;
+}
+
+.show-sidebar {
+  display: block;
+  left: 0;
+}
+
+//Tablet
+@media  (767px <= width < 1920px) {
+  .navbar {
+    .sidebar {
+      position: fixed;
+      transition: 0.4s ease-in-out;
+      left: -280px;
+      top: 64px;
+      width: 280px;
+      height: 100%;
+      background: $primary-corporate;
+
+      ul {
+        display: inline-block;
+        li {
+          display: block;
+          text-align: left;
+          margin: 0;
+          padding: 10px;
+          color: $white;
+          font-size: $body-height-M;
+        }
+      }
+    }
+    .menu-icon{
+      display: block;
+
+    }
+    .company-logo {
+      color: $white;
+      font-size: $tablet-h1;
+      font-weight: $tablet-weight-h1;
+    }
+
+    .mobile_menu {
+      left: 0;
+      transition: 0.4s ease-in-out;
+    }
+  }
+  button {
+    border: none;
+    background: none;
+    outline: none;
+    font-size: $tablet-h2;
+    color: $white;
+  }
+}
+
+// Mobile
+@media (width <= 767px) {
+
+  .navbar {
+    .sidebar {
+      position: fixed;
+      transition: 0.4s ease-in-out;
+      left: -280px;
+      top: 64px;
+      width: 200px;
+      height: 100%;
+      background: $primary-corporate;
+
+      ul {
+        display: inline-block;
+        li {
+          display: block;
+          text-align: left;
+          margin: 0;
+          padding: 10px;
+          color: $white;
+          font-size: $body-size-S;
+        }
+      }
+    }
+    .menu-icon{
+      display: block;
+
+    }
+    .company-logo {
+      color: $white;
+      font-size: $mobile-h1;
+      font-weight: $mobile-weight-h1;
+    }
+
+    .mobile_menu {
+      left: 0;
+      transition: 0.4s ease-in-out;
+    }
+  }
+
+  button {
+    border: none;
+    background: none;
+    outline: none;
+    font-size: $body-size-M;
+    color: $white;
+  }
+}

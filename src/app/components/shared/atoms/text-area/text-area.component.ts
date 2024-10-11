@@ -1,40 +1,32 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
-  selector: 'app-primary-input',
-  templateUrl: './primary-input.component.html',
-  styleUrls: ['./primary-input.component.scss'],
+  selector: 'app-text-area',
+  templateUrl: './text-area.component.html',
+  styleUrls: ['./text-area.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => PrimaryInputComponent),
+      useExisting: forwardRef(() => TextAreaComponent),
       multi: true
     }
   ]
 })
-export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
-
+export class TextAreaComponent implements OnInit, ControlValueAccessor {
+  private _value: string = '';
   private onChange = (value: string) => {};
-  public onTouched = () => {};
   public control: FormControl = new FormControl();
-  @Input() controlName!: string;
+  public onTouched = () => {}
   @Input() text: string = '';
-  @Input() type: 'text' | 'password' = 'text';
-  @Input() placeholder: string = '';
   @Input() maxLength: number = 0;
+  @Input() placeholder: string = '';
   @Input() isRequired: boolean = false;
   @Output() onValueChange = new EventEmitter<string>();
-  showPassword: boolean = true;
 
-  constructor(private rootFormGroup: FormGroupDirective) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.control = this.rootFormGroup.control.get(this.controlName) as FormControl;
-  }
-
-  toggleVisibility(): void {
-    this.showPassword = !this.showPassword;
   }
 
   getErrorMessage(): string {
@@ -56,8 +48,11 @@ export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
   }
 
   set value(value: string) {
-    this.control.setValue(value);
-    this.onValueChange.emit(value);
+    if(value !== this.value) {
+      this._value = value;
+      this.control.setValue(value, {emitEvent: false});
+      this.onValueChange.emit(value);
+    }
   }
 
   onInput(event: any): void {

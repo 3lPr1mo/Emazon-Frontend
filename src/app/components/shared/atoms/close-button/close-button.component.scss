@@ -1,0 +1,11 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/typography";
+@import "../../../../../styles/corner-radius";
+
+.close_button {
+  color: $white;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}

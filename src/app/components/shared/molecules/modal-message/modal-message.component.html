@@ -1,0 +1,6 @@
+<div class="container">
+  <img *ngIf="isSuccessful" src="./assets/icons/check_circle.svg" alt="success" class="icon"/>
+  <img *ngIf="!isSuccessful" src="./assets/icons/xmark_circle.svg" alt="success" class="icon"/>
+  <p class="label">{{label}}</p>
+  <primary-button (click)="closeModal()" text="Aceptar"></primary-button>
+</div>

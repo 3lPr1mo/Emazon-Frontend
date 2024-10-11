@@ -7,7 +7,7 @@
   color: $white;
   border: none;
   text-align: center;
-  font-size: $body-size-S;
+  font-size: $desktop-h2;
   padding: 12px 52px;
   border-radius: $radius-small;
   display: flex;
@@ -27,16 +27,16 @@ span {
   background-color: $click-corporate;
 }
 
-@media (width <= 320px) {
+@media (width <= 767px) {
   .primary-button {
     padding: 4px 12px;
-    font-size: $body-size-XS;
+    font-size: $mobile-h3;
   }
 }
 
-@media (width > 320px) and (width <= 768px) {
+@media (768px <= width < 1920px) {
   .primary-button {
     padding: 8px 24px;
-    font-size: $body-size-XS;
+    font-size: $tablet-h3;
   }
 }

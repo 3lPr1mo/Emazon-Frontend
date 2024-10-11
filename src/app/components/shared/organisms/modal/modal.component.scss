@@ -1,0 +1,51 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/typography";
+@import "../../../../../styles/corner-radius";
+
+.modal {
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  border-radius: $radius-medium;
+  background-color: $white;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 24px;
+    background-color: $primary-corporate;
+
+    &__title {
+      font-size: $body-size-L;
+      font-weight: $body-weight-L;
+      color: $white;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.modal-backdrop {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgb($primary-corporate, 0.2);
+  backdrop-filter: blur(2px);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

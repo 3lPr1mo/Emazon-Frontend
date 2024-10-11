@@ -1,6 +1,6 @@
 <div class="input-container">
   <label
-    for="primary-input"
+    [for]="controlName"
     *ngIf="text"
     class="input-label"
   >
@@ -8,10 +8,14 @@
   </label>
   <div class="input-wrapper">
     <input
-      id="primary-input"
+      [id]="controlName"
       [type]="type === 'password' && !showPassword ? 'password' : 'text'"
       class="primary-input"
-      placeholder="Text"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      (input)="onInput($event)"
+      [minlength]="1"
+      (blur)="onTouched()"
     />
     <button
       *ngIf="type === 'password'"
@@ -22,5 +26,8 @@
       <span *ngIf="showPassword"><i class="fa-regular fa-eye"></i></span>
       <span *ngIf="!showPassword"><i class="fa-regular fa-eye-slash"></i></span>
     </button>
+    <div *ngIf="control.invalid" class="text-danger">
+      <span>{{getErrorMessage()}}</span>
+    </div>
   </div>
 </div>
