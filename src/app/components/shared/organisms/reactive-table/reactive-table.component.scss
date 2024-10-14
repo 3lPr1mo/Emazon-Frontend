@@ -1,0 +1,97 @@
+@import "src/styles/colors";
+@import "src/styles/typography";
+@import "src/styles/corner-radius";
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  &__controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 0.3rem;
+    align-items: center;
+    
+    &__order {
+      display: flex;
+      &__select {
+        padding: 0.1rem;
+        border-radius: $radius-small;
+        background: transparent;
+        &:hover {
+          border-color: $primary-corporate;
+        }
+      }
+    }
+
+    &__size {
+      display: flex;
+      gap: 0.3rem;
+      &__select {
+        padding: 0.1rem;
+        border-radius: $radius-small;
+        background: transparent;
+        &:hover {
+          border-color: $primary-corporate;
+        }
+      }
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__header {
+      th {
+        padding: 10px;
+        border-top: 2px solid $spacer-light;
+        border-bottom: 2px solid $spacer-light;
+        font-weight: 500;
+      }
+    }
+
+    &__body {
+      tr {
+        td {
+          padding: 8px;
+        }
+
+        &:nth-child(odd) {
+          background-color: $bg-light-grey;
+        }
+
+        &:nth-child(even) {
+          background-color: $white;
+        }
+      }
+    }
+  }
+
+  &__pages {
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
+    &__number {
+      transition: background-color 0.3s ease, border-color 0.3 ease;
+      color: $black;
+
+      &:hover{
+        color: $hover-corporate;
+      }
+      &:active{
+        color: $click-corporate;
+      }
+    }
+    &__active {
+      color: $primary-corporate;
+      font-weight: bold;
+      transform: translateY(-0.2rem);
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrimaryInputComponent } from './primary-input.component';
+import { FormControl, FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 
 describe('PrimaryInputComponent', () => {
   let component: PrimaryInputComponent;
@@ -8,16 +9,28 @@ describe('PrimaryInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrimaryInputComponent ]
+      declarations: [ PrimaryInputComponent ],
+      imports: [ReactiveFormsModule],
+      providers: [
+        { 
+          provide: FormGroupDirective, 
+          useValue: {
+            control: new FormGroup({
+              testControl: new FormControl(null)
+            })
+          } 
+        }
+      ]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(PrimaryInputComponent);
     component = fixture.componentInstance;
+    component.controlName = 'testControl';
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  test('should create', () => {
     expect(component).toBeTruthy();
   });
 });

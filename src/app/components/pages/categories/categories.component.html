@@ -1,13 +1,20 @@
 <main class="container">
-  <p class="text">Registrar una categoría</p>
-  <span>
-    <primary-button
-      text="Añadir" [showIcon]="true"
-      icon="fa-solid fa-plus"
-      (click)="openModal()"
-    >
-    </primary-button>
-  </span>
+  <section class="container__add-category">
+    <p class="text">Registrar una categoría</p>
+    <span>
+      <primary-button
+        text="Añadir" [showIcon]="true"
+        icon="fa-solid fa-plus"
+        (click)="openModal()"
+      >
+      </primary-button>
+    </span>
+  </section>
+  <div class="container__divider"></div>
+  <section class="container__table">
+    <app-reactive-table></app-reactive-table>
+  </section>
+  <div class="container__divider"></div>
 </main>
 
 <app-modal class="modal" [ngClass]="{'isVisible': modalIsVisible}" title="Registrar una categoría" (closeEvn)="closeModal()">

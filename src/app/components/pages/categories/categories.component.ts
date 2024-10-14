@@ -12,6 +12,7 @@ export class CategoriesComponent implements OnInit {
   public successIsVisible: boolean = false;
   public errorIsVisible: boolean = false;
   public errorMessage: string = "Error al crear la cateogría";
+  public headers = ["name", "description"];
 
   @ViewChild(CategoryFormComponent) categoryFormComponent!: CategoryFormComponent;
 

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-text-area',
@@ -16,17 +16,23 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/for
 export class TextAreaComponent implements OnInit, ControlValueAccessor {
   private _value: string = '';
   private onChange = (value: string) => {};
-  public control: FormControl = new FormControl();
   public onTouched = () => {}
+  public control: FormControl = new FormControl();
   @Input() text: string = '';
-  @Input() maxLength: number = 0;
+  @Input() maxLength!: number;
   @Input() placeholder: string = '';
   @Input() isRequired: boolean = false;
+  @Input() controlName!: string;
   @Output() onValueChange = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private rootFormGroup: FormGroupDirective) { }
 
   ngOnInit(): void {
+    this.control = this.rootFormGroup.control.get(this.controlName) as FormControl;
+    const validator = this.control.validator ? [this.control.validator] : [];
+    validator.push(Validators.maxLength(this.maxLength))
+    this.control.setValidators(validator);
+    this.control.updateValueAndValidity();
   }
 
   getErrorMessage(): string {

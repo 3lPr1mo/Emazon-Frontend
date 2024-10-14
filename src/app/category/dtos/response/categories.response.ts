@@ -1,4 +1,4 @@
-export interface Welcome {
+export interface ContentPage {
     totalPage:     number;
     totalElements: number;
     pageNumber:    number;
@@ -13,3 +13,5 @@ export interface Content {
     name:        string;
     description: string;
 }
+
+export type ContentKeys = keyof Content;

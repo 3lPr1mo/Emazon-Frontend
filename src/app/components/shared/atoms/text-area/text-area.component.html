@@ -16,6 +16,8 @@
       [minlength]="1"
       (blur)="onTouched()"
     >
-
     </textarea>
+    <div *ngIf="control.invalid" class="text-danger">
+      <span>{{getErrorMessage()}}</span>
+    </div>
 </div>

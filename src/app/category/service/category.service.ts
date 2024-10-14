@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CreateCategoryRequest} from "../dtos/request/CreateCategory.request";
+import { Observable } from 'rxjs';
+import { ContentPage } from '../dtos/response/categories.response';
 
 @Injectable()
 export class CategoryService {
@@ -10,7 +12,10 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) { }
 
   createCategory(category: CreateCategoryRequest) {
-    console.log(category);
     return this.httpClient.post(this.apiUrl, category);
+  }
+
+  getAllCategories(page: number, size: number, isAsc: boolean, sortBy: string) : Observable<ContentPage> {
+    return this.httpClient.get<ContentPage>(`${this.apiUrl}?page=${page}&size=${size}&isAsc=${isAsc}&sortBy=${sortBy}`);
   }
 }

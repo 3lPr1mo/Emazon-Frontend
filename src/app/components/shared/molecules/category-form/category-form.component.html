@@ -10,7 +10,7 @@
   <app-text-area
     text="Descripción"
     placeholder="Ingrese una descripción..."
-    formControlName="description"
+    [controlName]="'description'"
     (onValueChange)="onValueChange('description', $event)"
     [isRequired]="true"
     [maxLength]="maxLengthDescription"

@@ -16,6 +16,7 @@
       (input)="onInput($event)"
       [minlength]="1"
       (blur)="onTouched()"
+      autocomplete="off"
     />
     <button
       *ngIf="type === 'password'"
@@ -26,8 +27,8 @@
       <span *ngIf="showPassword"><i class="fa-regular fa-eye"></i></span>
       <span *ngIf="!showPassword"><i class="fa-regular fa-eye-slash"></i></span>
     </button>
-    <div *ngIf="control.invalid" class="text-danger">
-      <span>{{getErrorMessage()}}</span>
-    </div>
+  </div>
+  <div *ngIf="control.invalid" class="text-danger">
+    <span>{{getErrorMessage()}}</span>
   </div>
 </div>

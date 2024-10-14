@@ -29,6 +29,10 @@
       outline: none;
     }
   }
+  .text-danger {
+    color: $error;
+    font-size: $body-size-XS;
+  }
 }
 
 //Tablet
