@@ -46,6 +46,7 @@
   &__table {
     width: 100%;
     border-collapse: collapse;
+    
 
     &__header {
       th {
@@ -53,13 +54,15 @@
         border-top: 2px solid $spacer-light;
         border-bottom: 2px solid $spacer-light;
         font-weight: 500;
+        width: 50%;
+        text-align: start;
       }
     }
 
     &__body {
       tr {
         td {
-          padding: 8px;
+          padding: 10px;
         }
 
         &:nth-child(odd) {
@@ -92,6 +95,7 @@
       color: $primary-corporate;
       font-weight: bold;
       transform: translateY(-0.2rem);
+      transition: 0.2s
     }
   }
 }
