@@ -1,7 +1,6 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CategoryService } from '../../../../category/service/category.service';
-import { Content, ContentPage } from 'src/app/common/dto/response/paged.response';
+import { Content } from 'src/app/common/dto/response/paged.response';
 
 @Component({
   selector: 'app-reactive-table',

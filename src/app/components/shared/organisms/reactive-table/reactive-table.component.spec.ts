@@ -6,6 +6,7 @@ import { ContentPage } from 'src/app/common/dto/response/paged.response';
 import { Observable, of, throwError } from 'rxjs';
 import { CategoryModule } from '../../../../category/category.module';
 import { HttpErrorResponse } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
 
 describe('ReactiveTableComponent', () => {
   let component: ReactiveTableComponent;
@@ -46,54 +47,28 @@ describe('ReactiveTableComponent', () => {
   test('should create', () => {
     expect(component).toBeTruthy();
   });
-  
-  test('should fetch categories on initialization', () => {
-    const fetchSpy = jest.spyOn(component, 'fetchAllCategories');
-    component.ngOnInit();
-    expect(fetchSpy).toHaveBeenCalled();
+
+  test('should emit correct value for setOrder when event is triggered', () => {
+    jest.spyOn(component.isAsc, 'emit');
+    const selectedElement = fixture.debugElement.query(By.css('.section__controls__order__select')).nativeElement;
+    selectedElement.value = selectedElement.options[0].value;
+    selectedElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.isAsc.emit).toHaveBeenCalledWith(true);
+    
+    selectedElement.value = selectedElement.options[1].value;
+    selectedElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.isAsc.emit).toHaveBeenCalledWith(false);
   });
 
-  test('should go to the specified page', () => {
-    const fetchSpy = jest.spyOn(component, 'fetchAllCategories');
-  
-    component.goToPage(2);
-    
-    expect(component.page).toBe(2);
-    expect(fetchSpy).toHaveBeenCalled();
-  });
-
-  test('should change order when setOrder is called', () => {
-    const fetchSpy = jest.spyOn(component, 'fetchAllCategories');
-    
-    component.setOrder(false);
-    
-    expect(component.isAsc).toBe(false);
-    expect(fetchSpy).toHaveBeenCalled();
-  });
-
-  test('should change page size and reset page when setSize is called', () => {
-    const fetchSpy = jest.spyOn(component, 'fetchAllCategories');
-    
-    component.setSize(5);
-    
-    expect(component.size).toBe(5);
-    expect(component.page).toBe(0);
-    expect(fetchSpy).toHaveBeenCalled();
-  });
-
-  test('should handle server connection error', () => {
-    // Espiamos el EventEmitter para capturar los errores emitidos
-    const errorMessageSpy = jest.spyOn(component.errorMessage, 'emit');
-  
-    // Simulamos un error de conexión con el servidor (status 0)
-    const httpErrorResponse = new HttpErrorResponse({ status: 0 });
-    jest.spyOn(service, 'getAllCategories').mockReturnValue(throwError(() => httpErrorResponse));
-  
-    // Llamamos a fetchAllCategories para ejecutar el flujo con error
-    component.fetchAllCategories();
-  
-    // Verificamos que se haya emitido el mensaje de error adecuado
-    expect(errorMessageSpy).toHaveBeenCalledWith('Conexión fallida con el servidor');
+  test('should emit correct size value for setSize when event is triggered', () => {
+    jest.spyOn(component.size, 'emit');
+    const select = fixture.debugElement.query(By.css('.section__controls__size__select')).nativeElement;
+    select.value = select.options[0].value;
+    select.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.size.emit).toHaveBeenCalledWith(3);
   });
 
 });

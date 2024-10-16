@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {CategoryFormComponent} from "../../shared/molecules/category-form/category-form.component";
-import { CategoryService } from 'src/app/category/service/category.service';
+import { CategoryService } from '../../../category/service/category.service';
 import { Content, ContentPage } from 'src/app/common/dto/response/paged.response';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -21,7 +21,7 @@ export class CategoriesComponent implements OnInit {
   public isAsc: boolean = true;
   public sortBy: string = 'name';
   public totalPages: number = 1;
-  public currentPage: number = 1;
+  public currentPage: number = 0;
   public data: Content[] = [{id: 0, name: '', description: ''}];
 
   @ViewChild(CategoryFormComponent) categoryFormComponent!: CategoryFormComponent;
@@ -45,6 +45,7 @@ export class CategoriesComponent implements OnInit {
         }
         if(err.status === 403) {
           this.errorMessage = 'Error de autentificación';
+          return;
         }
         return this.errorMessage = err.message;
       }
@@ -112,7 +113,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   onPageSelected(page: number){
-    console.log(page);
     this.page = page;
     this.currentPage = page;
     this.fetchAllCategories();
