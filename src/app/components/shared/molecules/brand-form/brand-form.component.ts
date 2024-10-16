@@ -28,7 +28,7 @@ export class BrandFormComponent implements OnInit {
     });
   }
 
-  private createBrand(): void {
+  public createBrand(): void {
     //TODO: Call brand service
     const {name, description}: CreateBrandRequest = this.form.value;
     

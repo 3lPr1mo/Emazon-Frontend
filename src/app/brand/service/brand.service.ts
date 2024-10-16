@@ -12,7 +12,7 @@ export class BrandService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createBrand(brand: CreateBrandRequest) : Observable<void> {
-    return this.httpClient.post<void>(this.apiUrl, brand);
+  createBrand(brand: CreateBrandRequest) {
+    return this.httpClient.post(this.apiUrl, brand);
   }
 }
