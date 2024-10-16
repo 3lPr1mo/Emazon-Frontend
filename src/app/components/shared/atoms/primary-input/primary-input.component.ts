@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-primary-input',
@@ -22,7 +22,7 @@ export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
   @Input() text: string = '';
   @Input() type: 'text' | 'password' = 'text';
   @Input() placeholder: string = '';
-  @Input() maxLength: number = 0;
+  @Input() maxLength!: number;
   @Input() isRequired: boolean = false;
   @Output() onValueChange = new EventEmitter<string>();
   showPassword: boolean = true;
@@ -31,6 +31,10 @@ export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     this.control = this.rootFormGroup.control.get(this.controlName) as FormControl;
+    const validator = this.control.validator ? [this.control.validator] : [];
+    validator.push(Validators.maxLength(this.maxLength))
+    this.control.setValidators(validator);
+    this.control.updateValueAndValidity();
   }
 
   toggleVisibility(): void {
@@ -41,9 +45,6 @@ export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
     const errors = this.control.errors;
     if(errors?.['required']) {
       return 'Este campo es requerido';
-    }
-    if(errors?.['minlength']) {
-      return `Debe tener al menos ${errors?.['minlength'].requiredLength} caracteres`;
     }
     if(errors?.['maxlength']) {
       return `Debe tener máximo ${errors?.['maxlength'].requiredLength} caracteres`;

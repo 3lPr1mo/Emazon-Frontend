@@ -1,0 +1,26 @@
+<main class="container">
+  <section class="container__add-category">
+    <p class="text">Registrar una marca</p>
+    <span>
+      <primary-button text="Añadir" [showIcon]="true" icon="fa-solid fa-plus" (click)="openModal()">
+      </primary-button>
+    </span>
+  </section>
+  <div class="container__divider"></div>
+</main>
+
+<app-modal class="modal" [ngClass]="{'isVisible': modalIsVisible}" title="Registrar una marca"
+  (closeEvn)="closeModal()">
+  <app-brand-form (brandCreated)="openSuccess()" (brandNotCreated)="openError($event)">
+  </app-brand-form>
+</app-modal>
+
+<app-modal *ngIf="successIsVisible" (closeEvn)="closeSuccess()">
+  <app-modal-message (closeEvent)="closeSuccess()" label="Categoría registrada exitosamente">
+  </app-modal-message>
+</app-modal>
+
+<app-modal *ngIf="errorIsVisible" (closeEvn)="closeError()">
+  <app-modal-message (closeEvent)="closeError()" [isSuccessful]="false" [label]="errorMessage">
+  </app-modal-message>
+</app-modal>

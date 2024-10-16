@@ -10,6 +10,7 @@ export class PrimaryButtonComponent implements OnInit {
   @Input() text: string = 'Button';
   @Input() showIcon: boolean = false;
   @Input() icon: string = '';
+  @Input() disable: boolean = false;
 
   constructor() { }
 

@@ -1,20 +1,19 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {CategoryFormComponent} from "../../shared/molecules/category-form/category-form.component";
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { BrandFormComponent } from '../../shared/molecules/brand-form/brand-form.component';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  selector: 'app-brands',
+  templateUrl: './brands.component.html',
+  styleUrls: ['./brands.component.scss']
 })
-export class CategoriesComponent implements OnInit {
+export class BrandsComponent implements OnInit {
 
   public modalIsVisible: boolean = false;
   public successIsVisible: boolean = false;
   public errorIsVisible: boolean = false;
-  public errorMessage: string = "Error al crear la cateogría";
-  public headers = ["name", "description"];
+  public errorMessage: string = "Error al crear la marca";
 
-  @ViewChild(CategoryFormComponent) categoryFormComponent!: CategoryFormComponent;
+  @ViewChild(BrandFormComponent) brandFormComponent!: BrandFormComponent;
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -28,7 +27,7 @@ export class CategoriesComponent implements OnInit {
 
   closeModal(): void {
     this.modalIsVisible = false;
-    this.categoryFormComponent.resetForm();
+    this.brandFormComponent.resetForm();
   }
 
   openSuccess(): void {

@@ -9,6 +9,7 @@ import {CategoryService} from "../../../category/service/category.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptorService} from "../../../interceptor/token.interceptor.service";
 import { ModalMessageComponent } from './modal-message/modal-message.component';
+import { BrandFormComponent } from './brand-form/brand-form.component';
 
 
 
@@ -19,12 +20,14 @@ import { ModalMessageComponent } from './modal-message/modal-message.component';
     LoginFormComponent,
     CategoryFormComponent,
     ModalMessageComponent,
+    BrandFormComponent,
   ],
   exports: [
     NavBarComponent,
     LoginFormComponent,
     CategoryFormComponent,
-    ModalMessageComponent
+    ModalMessageComponent,
+    BrandFormComponent
   ],
   imports: [
     CommonModule,
