@@ -46,9 +46,6 @@ export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
     if(errors?.['required']) {
       return 'Este campo es requerido';
     }
-    if(errors?.['minlength']) {
-      return `Debe tener al menos ${errors?.['minlength'].requiredLength} caracteres`;
-    }
     if(errors?.['maxlength']) {
       return `Debe tener máximo ${errors?.['maxlength'].requiredLength} caracteres`;
     }

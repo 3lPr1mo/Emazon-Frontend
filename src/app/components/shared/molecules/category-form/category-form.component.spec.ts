@@ -6,21 +6,20 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {PrimaryInputComponent} from "../../atoms/primary-input/primary-input.component";
 import {TextAreaComponent} from "../../atoms/text-area/text-area.component";
 import {AtomsModule} from "../../atoms/atoms.module";
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('CategoryFormComponent', () => {
   let component: CategoryFormComponent;
   let fixture: ComponentFixture<CategoryFormComponent>;
   let serviceSpy: CategoryService;
-  let categoryServiceMock!: {createCategory: jest.Mock}
+  let categoryServiceMock: jest.Mocked<CategoryService>
 
   beforeEach(async () => {
 
-    //const spy = jasmine.createSpyObj<CategoryService>('CategoryService', ['createCategory'])
-
     categoryServiceMock = {
       createCategory: jest.fn()
-    }
+    } as any as jest.Mocked<CategoryService>
 
     await TestBed.configureTestingModule({
       declarations: [ CategoryFormComponent, PrimaryInputComponent, TextAreaComponent ],
@@ -82,6 +81,39 @@ describe('CategoryFormComponent', () => {
     component.form.get('description')?.setValue('');
     component.onSubmit();
     expect(createCategory).not.toHaveBeenCalled();
+  });
+
+  test('should emit categoryCreated when category is successfully created', () => {
+    categoryServiceMock.createCategory.mockReturnValue(of({}));
+    jest.spyOn(component.categoryCreated, 'emit');
+    component.form.setValue({name: 'Category1', description: 'Description category1'});
+    component.createCategory();
+    expect(categoryServiceMock.createCategory).toHaveBeenCalledWith({name: 'Category1', description: 'Description category1'});
+    expect(component.categoryCreated.emit).toHaveBeenCalled();
+  });
+
+  test('should emit categoryNotCreated with error message on 0 error', () => {
+    const errorResponse = new HttpErrorResponse({ status: 0, statusText: 'Forbidden' });
+    categoryServiceMock.createCategory.mockReturnValue(throwError(errorResponse)); // Simular un error 403
+
+    jest.spyOn(component.categoryNotCreated, 'emit'); // Espiar el evento categoryNotCreated
+
+    component.form.setValue({ name: 'Category1', description: 'Description of Category1' }); // Establecer un valor válido
+    component.createCategory();
+
+    expect(component.categoryNotCreated.emit).toHaveBeenCalledWith('Conexión fallida con el servidor'); // Verificar el mensaje de error emitido
+  });
+
+  test('should emit categoryNotCreated with error message on 403 error', () => {
+    const errorResponse = new HttpErrorResponse({ status: 403, statusText: 'Forbidden' });
+    categoryServiceMock.createCategory.mockReturnValue(throwError(errorResponse)); // Simular un error 403
+
+    jest.spyOn(component.categoryNotCreated, 'emit'); // Espiar el evento categoryNotCreated
+
+    component.form.setValue({ name: 'Category1', description: 'Description of Category1' }); // Establecer un valor válido
+    component.createCategory();
+
+    expect(component.categoryNotCreated.emit).toHaveBeenCalledWith('Error no de autentificación'); // Verificar el mensaje de error emitido
   });
 
 });

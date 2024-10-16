@@ -9,11 +9,13 @@ import { ModalComponent } from './components/shared/organisms/modal/modal.compon
 import {TemplateModule} from "./components/templates/template.module";
 import { CategoriesComponent } from './components/pages/categories/categories.component';
 import { OrganismsModule } from './components/shared/organisms/organisms.module';
+import { BrandsComponent } from './components/pages/brands/brands.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriesComponent,
+    BrandsComponent,
   ],
   imports: [
     BrowserModule,

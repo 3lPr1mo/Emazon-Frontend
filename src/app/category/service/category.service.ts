@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CreateCategoryRequest} from "../dtos/request/CreateCategory.request";
 import { Observable } from 'rxjs';
-import { ContentPage } from '../dtos/response/categories.response';
+import { ContentPage } from 'src/app/common/dto/response/paged.response';
 
 @Injectable()
 export class CategoryService {

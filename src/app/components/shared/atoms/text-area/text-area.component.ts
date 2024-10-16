@@ -15,7 +15,7 @@ import {ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR
 })
 export class TextAreaComponent implements OnInit, ControlValueAccessor {
   private _value: string = '';
-  private onChange = (value: string) => {};
+  public onChange = (value: string) => {};
   public onTouched = () => {}
   public control: FormControl = new FormControl();
   @Input() text: string = '';

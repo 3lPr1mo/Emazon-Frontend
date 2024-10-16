@@ -1,0 +1,35 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/typography";
+
+.modal {
+  display: none;
+}
+.isVisible {
+  display: block;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+
+  &__add-category {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: $border;
+    margin: 0px 0.1rem;
+  }
+
+  &__table {
+    justify-content: center;
+    justify-items: center;
+  }
+
+}

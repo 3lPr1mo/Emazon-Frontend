@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Content, ContentPage } from 'src/app/category/dtos/response/categories.response';
 import { CategoryService } from '../../../../category/service/category.service';
+import { Content, ContentPage } from 'src/app/common/dto/response/paged.response';
 
 @Component({
   selector: 'app-reactive-table',
@@ -62,6 +62,7 @@ export class ReactiveTableComponent implements OnInit {
 
   setSize(size: number){
     this.size = size;
+    this.page=0;
     this.fetchAllCategories()
   }
 

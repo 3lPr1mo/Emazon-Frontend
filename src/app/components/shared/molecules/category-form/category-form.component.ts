@@ -53,6 +53,7 @@ export class CategoryFormComponent implements OnInit {
 
   onSubmit(): void {
     if(!this.form.valid) {
+      this.categoryNotCreated.emit('Formulario inválido')
       return;
     }
     this.createCategory();

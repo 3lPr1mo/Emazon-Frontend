@@ -36,7 +36,7 @@ describe('TokenInterceptorService', () => {
 
   test('should add Authorization header if token exist', () => {
     const testUrl = '/test';
-    const expectedToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU5JU1RSQURPUiIsInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcyODY4MTQwMywiZXhwIjoxNzI4OTQ0MzQ5fQ.4LU1W1hDlEximg8deQUo1XoQnE2_oMdg-6hGvTczFP4';
+    const expectedToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU5JU1RSQURPUiIsInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcyOTAzMDMzNCwiZXhwIjoxNzI5MjkzMjgwfQ.Ypfd81-2ItSa_MZ8dWI4rb224p0_LxZ4ehvcSAr2Cs4';
 
     httpClient.get(testUrl).subscribe();
 
