@@ -6,6 +6,19 @@
       </primary-button>
     </span>
   </section>
+  <section class="container__table">
+    <app-reactive-table 
+      [data]="data" 
+      [headers]="headers" 
+      [pageSize]="getPagesArray()" 
+      [totalPages]="totalPages"
+      [currentPage]="currentPage" 
+      (isAsc)="onOrderChange($event)" 
+      (size)="onSizeChange($event)"
+      (pageSelected)="onPageSelected($event)"
+      >
+    </app-reactive-table>
+  </section>
   <div class="container__divider"></div>
 </main>
 

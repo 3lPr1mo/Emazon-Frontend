@@ -10,6 +10,7 @@ import {TemplateModule} from "./components/templates/template.module";
 import { CategoriesComponent } from './components/pages/categories/categories.component';
 import { OrganismsModule } from './components/shared/organisms/organisms.module';
 import { BrandsComponent } from './components/pages/brands/brands.component';
+import { BrandFormComponent } from './components/shared/molecules/brand-form/brand-form.component';
 
 @NgModule({
   declarations: [

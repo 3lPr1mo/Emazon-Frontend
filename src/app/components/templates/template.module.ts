@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MainTemplateComponent } from './main-template/main-template.component';
 import {MoleculesModule} from "../shared/molecules/molecules.module";
 import {RouterOutlet} from "@angular/router";
+import { OrganismsModule } from '../shared/organisms/organisms.module';
 
 
 
@@ -16,6 +17,7 @@ import {RouterOutlet} from "@angular/router";
   imports: [
     CommonModule,
     MoleculesModule,
+    OrganismsModule,
     RouterOutlet
   ]
 })
