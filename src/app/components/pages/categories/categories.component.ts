@@ -17,7 +17,7 @@ export class CategoriesComponent implements OnInit {
   public errorMessage: string = "Error al crear la cateogría";
   public headers = ["name", "description"];
   public page: number = 0;
-  public size: number = 5;
+  public size: number = 3;
   public isAsc: boolean = true;
   public sortBy: string = 'name';
   public totalPages: number = 1;
