@@ -9,61 +9,38 @@ import { Content, ContentPage } from 'src/app/common/dto/response/paged.response
   styleUrls: ['./reactive-table.component.scss']
 })
 export class ReactiveTableComponent implements OnInit {
+  @Input() data!: Content[];
+  @Input() headers!: string[];
+  @Input() pageSize!: number[];
+  @Input() totalPages!: number;
+  @Input() currentPage!: number;
 
-  public data: Content[] = [{id: 0, name: '', description: ''}];
-  public isAsc: boolean = true;
-  page: number = 0;
-  size: number = 3;
-  sortBy: string = 'name';
-  totalPages: number = 1;
-  currentPage: number = 1;
+  public orderAsc: boolean = true;
+  public selectedSize: number = 3;
 
-  errorMessage = new EventEmitter<string>();
-  //@Input() isAsc: boolean = true;
+  @Output() isAsc: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() size = new EventEmitter<number>();
+  @Output() pageSelected = new EventEmitter<number>();
   
   constructor(private service: CategoryService) { }
 
   ngOnInit(): void {
-    this.fetchAllCategories();
   }
 
-  fetchAllCategories(page: number = this.page, size: number = this.size, isAsc: boolean = this.isAsc, sortBy:string = this.sortBy) {
-    this.service.getAllCategories(page, size, isAsc, sortBy).subscribe({
-      next: (dataInfo: ContentPage) => {
-        this.data = dataInfo.content;
-        this.totalPages = dataInfo.totalPage;
-      },
-      error: (err: HttpErrorResponse) => {
-        if(err.status === 0) {
-          this.errorMessage.emit('Conexión fallida con el servidor');
-          return;
-        }
-        if(err.status === 403) {
-          this.errorMessage.emit('Error de autentificación');
-        }
-        return this.errorMessage.emit(err.message);
-      }
-    });
+  setOrder(event: Event){
+    const selectedElement = event.target as HTMLSelectElement;
+    const value = selectedElement.value === 'true';
+    this.isAsc.emit(value);
   }
 
-  getPagesArray(): number[] {
-    return Array.from({length: this.totalPages}, (_, index) => index + 1);
+  setSize(event: Event){
+    const selectedElement = event.target as HTMLSelectElement;
+    const value = parseInt(selectedElement.value, 10);
+    this.size.emit(value);
   }
 
   goToPage(page: number): void {
-    this.page = page;
-    this.fetchAllCategories()
-  }
-
-  setOrder(isAsc: boolean){
-    this.isAsc = isAsc;
-    this.fetchAllCategories()
-  }
-
-  setSize(size: number){
-    this.size = size;
-    this.page=0;
-    this.fetchAllCategories()
+    this.pageSelected.emit(page);
   }
 
 }

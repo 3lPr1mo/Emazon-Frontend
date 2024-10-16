@@ -2,14 +2,14 @@
   <div class="section__controls">
     <div class="section__controls__order">
       <label class="section__controls__order__label-asc" for="isAsc">Ordenar por:</label>
-      <select id="isAsc" class="section__controls__order__select" [(ngModel)]="isAsc" (change)="setOrder(isAsc)">
+      <select id="isAsc" class="section__controls__order__select" [(ngModel)]="orderAsc" (change)="setOrder($event)">
         <option [value]="true">Ascendente</option>
         <option [value]="false">Descendente</option>
       </select>
     </div>
     <div class="section__controls__size">
       <label class="section__controls__size__label-size">Tamaño:</label>
-      <select id="isAsc" class="section__controls__size__select" [(ngModel)]="size" (change)="setSize(size)">
+      <select id="isAsc" class="section__controls__size__select" [(ngModel)]="selectedSize" (change)="setSize($event)">
         <option [value]="3">3</option>
         <option [value]="5">5</option>
         <option [value]="10">10</option>
@@ -22,8 +22,7 @@
   <table class="section__table">
     <thead class="section__table__header">
       <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
+        <th *ngFor="let header of headers">{{header}}</th>
       </tr>
     </thead>
     <tbody class="section__table__body">
@@ -34,10 +33,10 @@
     </tbody>
   </table>
   <div class="section__pages">
-    <span *ngFor="let pages of getPagesArray(); let i = index" 
+    <span *ngFor="let pages of pageSize; let i = index" 
       class="section__pages__number"
       (click)="goToPage(i)"
-      [ngClass]="{'section__pages__active': page === i}"
+      [ngClass]="{'section__pages__active': currentPage === i}"
       tabindex="0"
       role="button">
       {{pages}}
