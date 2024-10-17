@@ -23,7 +23,7 @@ export class BrandFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(50)]],
+      name: ['', [Validators.required]],
       description: ['', [Validators.required]]
     });
   }

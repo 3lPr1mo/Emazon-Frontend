@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 describe('BrandsComponent', () => {
   let component: BrandsComponent;
   let fixture: ComponentFixture<BrandsComponent>;
-  let brandFormComponentMock: jest.Mocked<BrandFormComponent>;
+  let brandFormComponentMock: any;
   let changeDetectorRefSpy: ChangeDetectorRef;
   let service: BrandService;
 
@@ -46,7 +46,7 @@ describe('BrandsComponent', () => {
 
     brandFormComponentMock = {
       resetForm: jest.fn(), // Mock del método resetForm
-    } as unknown as jest.Mocked<BrandFormComponent>;
+    };
 
     service = TestBed.inject(BrandService);
     fixture.detectChanges();

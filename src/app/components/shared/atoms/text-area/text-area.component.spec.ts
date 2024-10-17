@@ -44,23 +44,9 @@ describe('TextAreaComponent', () => {
     expect(component.control.errors?.['maxlength']).toBeTruthy();
   });
 
-  /*test('should return required message', () => {
-    component.maxLength=10
-    component.ngOnInit();
-    expect(component.control.errors).toBeNull();
-    component.control.setErrors({required: true});
-    component.control.updateValueAndValidity();
-    expect(component.getErrorMessage()).toBe('Este campo es requerido');
-  });*/
-
   test('should return required error message', () => {
     component.control.setErrors({required: true});
     expect(component.getErrorMessage()).toBe('Este campo es requerido');
-  });
-
-  test('should return minlenght error message', () => {
-    component.control.setErrors({minlength: {requiredLength: 5, actualLength: 3}});
-    expect(component.getErrorMessage()).toBe('Debe tener al menos 5 caracteres');
   });
 
   test('should return error message for maxLength', () => {

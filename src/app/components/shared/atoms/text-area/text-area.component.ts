@@ -31,43 +31,10 @@ export class TextAreaComponent implements OnInit {
     if(errors?.['required']) {
       return 'Este campo es requerido';
     }
-    if(errors?.['minlength']) {
-      return `Debe tener al menos ${errors?.['minlength'].requiredLength} caracteres`;
-    }
     if(errors?.['maxlength']) {
       return `Debe tener máximo ${errors?.['maxlength'].requiredLength} caracteres`;
     }
     return '';
   }
-
-  /*get value(): string {
-    return this.control.value;
-  }
-
-  set value(value: string) {
-    if(value !== this.value) {
-      this._value = value;
-      this.control.setValue(value, {emitEvent: false});
-      this.onValueChange.emit(value);
-    }
-  }
-
-  onInput(event: any): void {
-    this.onChange(event.target.value);
-  }
-
-  writeValue(value: string): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-  }*/
 
 }

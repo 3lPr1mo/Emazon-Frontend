@@ -49,7 +49,7 @@ describe('CategoriesComponent', () => {
       resetForm: jest.fn(), // Mock del método resetForm
     } as unknown as jest.Mocked<CategoryFormComponent>;
 
-
+    component.categoryFormComponent = categoryFormComponentMock;
     service = TestBed.inject(CategoryService);
     fixture.detectChanges(); // Detectar los cambios iniciales
   });
