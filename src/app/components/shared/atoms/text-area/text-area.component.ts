@@ -5,17 +5,8 @@ import {ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR
   selector: 'app-text-area',
   templateUrl: './text-area.component.html',
   styleUrls: ['./text-area.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TextAreaComponent),
-      multi: true
-    }
-  ]
 })
-export class TextAreaComponent implements OnInit, ControlValueAccessor {
-  private _value: string = '';
-  public onChange = (value: string) => {};
+export class TextAreaComponent implements OnInit {
   public onTouched = () => {}
   public control: FormControl = new FormControl();
   @Input() text: string = '';
@@ -49,7 +40,7 @@ export class TextAreaComponent implements OnInit, ControlValueAccessor {
     return '';
   }
 
-  get value(): string {
+  /*get value(): string {
     return this.control.value;
   }
 
@@ -77,6 +68,6 @@ export class TextAreaComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-  }
+  }*/
 
 }

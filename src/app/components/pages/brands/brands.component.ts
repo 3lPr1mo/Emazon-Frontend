@@ -65,6 +65,7 @@ export class BrandsComponent implements OnInit {
   openSuccess(): void {
     this.closeModal();
     this.successIsVisible = true;
+    this.fetchAllBrands();
   }
 
   closeSuccess(): void {

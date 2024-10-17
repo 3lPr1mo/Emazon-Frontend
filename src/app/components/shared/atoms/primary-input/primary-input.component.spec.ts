@@ -63,12 +63,16 @@ describe('PrimaryInputComponent', () => {
     expect(errorMessage).toBe('Debe tener máximo 5 caracteres');
   });
 
-  test('should set and get value correctly', () => {
-    const testValue = 'Sample text';
-    component.value = testValue;
+  test('should toggle visibility', () => {
+    component.toggleVisibility();
+    expect(component.showPassword).toBeFalsy();
+    component.toggleVisibility();
+    expect(component.showPassword).toBeTruthy();
+  });
 
-    expect(component.value).toBe(testValue);
-    expect(component.control.value).toBe(testValue);
+  test('should return null string when are not errors', () => {
+    component.control.setValue('si');
+    expect(component.getErrorMessage()).toBe('');
   });
 
 });

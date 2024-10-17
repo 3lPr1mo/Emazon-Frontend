@@ -5,8 +5,8 @@
   <h1 class="company-logo">Emazon</h1>
   <div class="sidebar" [class.mobile_menu]="sidebarOpen">
     <ul>
-      <li>Categories</li>
-      <li>Brands</li>
+      <li (click)="goToNav('categories')" >Categories</li>
+      <li (click)="goToNav('brands')" >Brands</li>
       <li>Articles</li>
     </ul>
   </div>

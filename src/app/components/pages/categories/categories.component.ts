@@ -65,6 +65,7 @@ export class CategoriesComponent implements OnInit {
   openSuccess(): void {
     this.closeModal();
     this.successIsVisible = true;
+    this.fetchAllCategories();
   }
 
   closeSuccess(): void {

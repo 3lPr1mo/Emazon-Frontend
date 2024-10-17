@@ -10,6 +10,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptorService} from "../../../interceptor/token.interceptor.service";
 import { ModalMessageComponent } from './modal-message/modal-message.component';
 import { BrandFormComponent } from './brand-form/brand-form.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -33,7 +34,8 @@ import { BrandFormComponent } from './brand-form/brand-form.component';
     CommonModule,
     AtomsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [
     CategoryService,

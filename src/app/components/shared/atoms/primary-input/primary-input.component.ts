@@ -5,19 +5,12 @@ import {ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR
   selector: 'app-primary-input',
   templateUrl: './primary-input.component.html',
   styleUrls: ['./primary-input.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => PrimaryInputComponent),
-      multi: true
-    }
-  ]
 })
-export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
+export class PrimaryInputComponent implements OnInit {
 
-  private onChange = (value: string) => {};
+  //private onChange = (value: string) => {};
   public onTouched = () => {};
-  public control: FormControl = new FormControl();
+  public control!: FormControl;
   @Input() controlName!: string;
   @Input() text: string = '';
   @Input() type: 'text' | 'password' = 'text';
@@ -52,7 +45,7 @@ export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
     return '';
   }
 
-  get value(): string {
+  /*get value(): string {
     return this.control.value;
   }
 
@@ -77,6 +70,6 @@ export class PrimaryInputComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-  }
+  }*/
 
 }

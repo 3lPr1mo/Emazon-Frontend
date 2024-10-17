@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextAreaComponent } from './text-area.component';
-import { NG_VALUE_ACCESSOR, FormControl, FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, FormControl, FormGroup, FormGroupDirective, ReactiveFormsModule, Validators } from '@angular/forms';
 import { forwardRef } from '@angular/core';
 
 describe('TextAreaComponent', () => {
@@ -44,18 +44,6 @@ describe('TextAreaComponent', () => {
     expect(component.control.errors?.['maxlength']).toBeTruthy();
   });
 
-  test('should emit value on input change', () => {
-    const emitSpy = jest.spyOn(component.onValueChange, 'emit');
-    const setValueSpy = jest.spyOn(component.control, 'setValue');
-    
-    const newValue = 'New value'
-    component.value = newValue;
-
-    expect(setValueSpy).toHaveBeenCalledWith(newValue, {emitEvent: false});
-    expect(emitSpy).toHaveBeenCalledWith(newValue);
-    expect(component['_value']).toBe(newValue);
-  });
-
   /*test('should return required message', () => {
     component.maxLength=10
     component.ngOnInit();
@@ -75,17 +63,18 @@ describe('TextAreaComponent', () => {
     expect(component.getErrorMessage()).toBe('Debe tener al menos 5 caracteres');
   });
 
-  test('should call onChange when onInput is triggered', () => {
-    const value = 'test value';
-    const onChangeSpy = jest.spyOn(component, 'onChange');
-    component.onInput({target: {value}});
-    expect(onChangeSpy).toHaveBeenCalledWith(value);
-  });
+  test('should return error message for maxLength', () => {
+    component.control.setValidators([Validators.maxLength(5)]);
+    component.control.setValue('Longer than five');
+    component.control.updateValueAndValidity();
+    
+    const errorMessage = component.getErrorMessage();
+    expect(errorMessage).toBe('Debe tener máximo 5 caracteres');
+  })
 
-  test('should set the value when writeValue is called', () => {
-    const value = 'new value';
-    component.writeValue(value);
-    expect(component.value).toBe(value);
+  test('should return null string when are not errors', () => {
+    component.control.setValue('si');
+    expect(component.getErrorMessage()).toBe('');
   });
 
 });
