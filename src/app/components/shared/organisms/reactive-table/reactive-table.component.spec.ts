@@ -71,4 +71,10 @@ describe('ReactiveTableComponent', () => {
     expect(component.size.emit).toHaveBeenCalledWith(3);
   });
 
+  test('should emit pageSelected when goToPage method is invoke', () => {
+    jest.spyOn(component.pageSelected, 'emit');
+    component.goToPage(1);
+    expect(component.pageSelected.emit).toHaveBeenCalledWith(1);
+  });
+
 });

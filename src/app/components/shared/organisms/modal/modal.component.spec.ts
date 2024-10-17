@@ -20,4 +20,11 @@ describe('ModalComponent', () => {
   test('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  test('should emit closeEvn when close method is invoke', () => {
+    jest.spyOn(component.closeEvn, 'emit');
+    component.close();
+    expect(component.closeEvn.emit).toHaveBeenCalled();
+  });
+  
 });

@@ -20,4 +20,10 @@ describe('ModalMessageComponent', () => {
   test('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  test('should close modal', () => {
+    jest.spyOn(component.closeEvent, 'emit');
+    component.closeModal();
+    expect(component.closeEvent.emit).toHaveBeenCalled();
+  });
 });
