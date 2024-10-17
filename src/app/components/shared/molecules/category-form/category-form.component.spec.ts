@@ -8,6 +8,7 @@ import {TextAreaComponent} from "../../atoms/text-area/text-area.component";
 import {AtomsModule} from "../../atoms/atoms.module";
 import { of, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { exec } from 'child_process';
 
 describe('CategoryFormComponent', () => {
   let component: CategoryFormComponent;
@@ -114,6 +115,23 @@ describe('CategoryFormComponent', () => {
     component.createCategory();
 
     expect(component.categoryNotCreated.emit).toHaveBeenCalledWith('Error no de autentificación'); // Verificar el mensaje de error emitido
+  });
+
+  test('should emit categoryNotCreated with error message are none of 0 and 403', () => {
+    const errorResponse = new HttpErrorResponse({});
+    categoryServiceMock.createCategory.mockReturnValue(throwError(() => errorResponse));
+    jest.spyOn(component.categoryNotCreated, 'emit');
+    
+    component.form.setValue({ name: 'Category1', description: 'Description of Category1' });
+    component.createCategory();
+    
+    expect(component.categoryNotCreated.emit).toHaveBeenCalled();
+  });
+
+  test('shoudl change value on onValueChange', () => {
+    component.form.setValue({ name: 'Category1', description: 'Description of Category1' })
+    component.onValueChange('name', 'a');
+    expect(component.form.get('name')?.value).toBe('a')
   });
 
 });
